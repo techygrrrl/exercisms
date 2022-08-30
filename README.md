@@ -20,7 +20,8 @@ To be ready:
 
 1. Join the Exercism platform
 2. Install the CLI – [read the walkthrough](https://exercism.org/cli-walkthrough)
-3. Solve the sample [hello-world problem in Kotlin](https://exercism.org/tracks/kotlin/exercises/hello-world) and submit it to the platform via the CLI
-4. Click the **Mark as Complete** button so it counts towards your progress and profile reputation
+3. Solve the sample [hello-world problem in Kotlin](https://exercism.org/tracks/kotlin/exercises/hello-world) 
+4. Submit your solution to the Hello, World problem via the CLI
+5. Click the **Mark as Complete** button so it counts towards your progress and profile reputation
 
 Here's the Kotlin track: https://exercism.org/tracks/kotlin
