@@ -1,14 +1,12 @@
-import java.util.concurrent.locks.ReentrantLock
+import java.util.concurrent.atomic.AtomicInteger
 
 class BankAccount {
-    private val lock = ReentrantLock(true)
-
     val balance: Int get() {
         if (state == State.CLOSED) throw IllegalStateException()
-        return _balance
+        return _balance.get()
     }
 
-    private var _balance: Int = 0
+    private var _balance = AtomicInteger(0)
 
     private var state: State = State.OPEN
 
@@ -20,11 +18,7 @@ class BankAccount {
     fun adjustBalance(amount: Long){
         if (state == State.CLOSED) throw IllegalStateException()
 
-        lock.lock()
-        val previousBalance = balance
-        val newBalance: Int = previousBalance + amount.toInt()
-        _balance = newBalance
-        lock.unlock()
+        _balance.getAndAdd(amount.toInt())
     }
 
     fun close() {
