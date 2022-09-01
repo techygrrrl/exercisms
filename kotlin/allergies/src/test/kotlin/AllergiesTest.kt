@@ -5,6 +5,13 @@ import kotlin.test.assertTrue
 
 class AllergiesTest {
     @Test
+    fun `bitwise test`() {
+        assertTrue(Allergies(34).isAllergicTo(Allergen.CHOCOLATE))
+        assertTrue(Allergies(34).isAllergicTo(Allergen.PEANUTS))
+        assertFalse(Allergies(34).isAllergicTo(Allergen.EGGS))
+    }
+
+    @Test
     fun `eggs - not allergic to anything`() = assertIsNotAllergic(0, Allergen.EGGS)
 
     @Test

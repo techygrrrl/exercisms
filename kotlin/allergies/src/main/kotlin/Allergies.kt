@@ -1,6 +1,4 @@
 class Allergies(val score: Int) {
-    private val allergies = mutableListOf<Allergen>()
-
     // 1        - Eggs
     // 10       - Peanuts
     // 100      - Shellfish
@@ -10,28 +8,13 @@ class Allergies(val score: Int) {
     // 1000000  - Pollen
     // 10000000 - Cats
 
-    init {
-        val base2Score = score.toString(2)
-
-        val allergenValues = Allergen.values()
-
-        base2Score.reversed().forEachIndexed { idx, char ->
-            if (idx > allergenValues.size - 1) {
-                return@forEachIndexed
-            }
-
-            if (char == '1') {
-                val allergen = allergenValues[idx]
-                allergies.add(allergen)
-            }
+    private val allergies: List<Allergen> =
+        Allergen.values().filter { allergen ->
+            (score and allergen.score) == allergen.score
         }
-    }
 
-    fun getList(): List<Allergen> {
-        return allergies
-    }
+    fun getList(): List<Allergen> = allergies
 
-    fun isAllergicTo(allergen: Allergen): Boolean {
-        return allergies.contains(allergen)
-    }
+    fun isAllergicTo(allergen: Allergen): Boolean =
+        (score and allergen.score) == allergen.score
 }
