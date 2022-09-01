@@ -8,6 +8,7 @@ class Triangle<out T : Number>(val a: T, val b: T, val c: T) {
     // A scalene triangle has all sides of different lengths
     val isScalene: Boolean
 
+    // A triangle where the sum of any 2 sides is equal to the 3rd, essentially rendering a flat line
     val isDegenerate: Boolean
 
     init {
