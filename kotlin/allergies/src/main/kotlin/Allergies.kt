@@ -9,9 +9,7 @@ class Allergies(val score: Int) {
     // 10000000 - Cats
 
     private val allergies: List<Allergen> =
-        Allergen.values().filter { allergen ->
-            (score and allergen.score) == allergen.score
-        }
+        Allergen.values().filter(this::isAllergicTo)
 
     fun getList(): List<Allergen> = allergies
 
