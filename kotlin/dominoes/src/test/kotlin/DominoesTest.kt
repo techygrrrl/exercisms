@@ -81,14 +81,14 @@ class DominoesTest {
     @Test
     fun `nine elements`() {
         val input = listOf(
-                Domino(1, 2),
+                Domino(1, 2), // 1. placed [1,2]
                 Domino(5, 3),
                 Domino(3, 1),
                 Domino(1, 2),
-                Domino(2, 4),
+                Domino(2, 4), // 2. find and place [2, 4]
                 Domino(1, 6),
                 Domino(2, 3),
-                Domino(3, 4),
+                Domino(3, 4), // 3. find and place [4, 3]
                 Domino(5, 6))
         Dominoes.formChain(input).should { beValidDominoes(input) }
     }
