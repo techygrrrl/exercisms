@@ -3,15 +3,15 @@ val existingRobots = mutableSetOf<String>()
 class Robot {
     private val availableLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-    private var _name: String
+    var name: String
+    private set
+
     init {
-        _name = generateRobotName()
+        name = generateRobotName()
     }
 
-    val name: String get() = _name
-
     fun reset() {
-        _name = generateRobotName()
+        name = generateRobotName()
     }
 
     private fun generateRobotName(): String {
