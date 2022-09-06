@@ -11,11 +11,7 @@ class KindergartenGarden(private val diagram: String) {
 
     fun getPlantsOfStudent(student: String): List<String> {
         val studentIndex = students.indexOf(student)
-        val firstPlantIndex = if (studentIndex == 0) {
-            0
-        } else {
-            studentIndex * 2
-        }
+        val firstPlantIndex = studentIndex * 2
 
         return rows
             .flatMap { row ->
