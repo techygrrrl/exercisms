@@ -31,12 +31,64 @@ object Dominoes {
 //        return domino
 //    }
 
+    private fun  List<Domino>.findADominoWithSide(n: Int): Domino? =
+        find { domino ->
+            domino.right == n || domino.left == n
+        }
+
     fun formChain(inputDominoes: List<Domino>): List<Domino> {
+        val output = mutableListOf<Domino>()
+
         val availableDominoes = inputDominoes.toMutableList()
-        val startingDomino = availableDominoes.removeFirst()
+
+        var currentDomino = availableDominoes.removeFirst()
+        var otherDominoSide = currentDomino.right
+
+        output.add(currentDomino)
+
+        println("starting domino: $currentDomino - Remaining: $availableDominoes")
+
 
         while (availableDominoes.isNotEmpty()) {
-//            val nextDomino =
+            println("Searching for side $otherDominoSide")
+
+            // TODO: Fix. this is bad.
+            var anotherDomino = availableDominoes.findADominoWithSide(otherDominoSide)
+            while (anotherDomino == null) {
+                anotherDomino = availableDominoes.findADominoWithSide(??)
+            }
+
+            if (currentDomino.right == anotherDomino.left) {
+                // We good, no flipping required
+                otherDominoSide = anotherDomino.right
+                currentDomino = anotherDomino
+                output.add(anotherDomino)
+            } else {
+                // Flipping
+                val oldLeft = anotherDomino.left
+                val oldRight = anotherDomino.right
+
+                otherDominoSide = anotherDomino.left
+
+                val flippedDomino = Domino(left = oldRight, right = oldLeft)
+                currentDomino = flippedDomino
+
+                output.add(flippedDomino)
+            }
+
+
+            availableDominoes.remove(anotherDomino)
+            println("Found a domino: $anotherDomino - Remaining: $availableDominoes ")
+
+//            otherDominoSide = if (anotherDomino.left == otherDominoSide) {
+//                anotherDomino.right
+//            } else {
+//                anotherDomino.left
+//            }
+
+
+
+            println("OUTPUT = $output")
         }
 
         println("input (size = ${inputDominoes.size}) : $inputDominoes")
@@ -67,7 +119,7 @@ object Dominoes {
         // circle
         // graph
 
-        return listOf()
+        return output
     }
 
 //    private fun compareDominoes(a: Domino, b: Domino): Int {
