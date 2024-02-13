@@ -7,3 +7,7 @@ Exercises in Go can be run with:
 And with benchmarking:
 
     go test -bench=./ -v
+
+Benchmarking without the tests:
+
+    go test -bench=. -count 5 -run=^#
