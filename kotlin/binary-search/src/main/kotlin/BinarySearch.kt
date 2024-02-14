@@ -13,10 +13,10 @@ object BinarySearch {
             }
 
             if (middleValue < item) {
-                // Middle item is smaller than the target item. Move cursor to the right.
+                // Middle item is smaller than the target item. Move left cursor to the right.
                 leftCursor = middleCursor + 1
             } else {
-                // Middle item is larger than the target item. Move cursor to the left.
+                // Middle item is larger than the target item. Move right cursor to the left.
                 rightCursor = middleCursor - 1
             }
         }
